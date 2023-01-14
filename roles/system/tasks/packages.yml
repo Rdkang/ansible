@@ -1,0 +1,25 @@
+- name: Update packages
+  dnf:
+    name: "*"
+    state: latest
+
+- name: Install essential packages
+  dnf:
+    name: "{{ packages }}"
+    state: present
+
+- name: Install Python and python3-pip
+  package:
+    name:
+      - python3
+      - python3-pip
+    state: present
+
+- name: Dnf configure
+  ansible.builtin.blockinfile:
+    path: /etc/dnf/dnf.conf
+    block: |
+      max_parallel_downloads=10
+      fastestmirror=True
+      defaultTrue=yes
+      defaultyes=True

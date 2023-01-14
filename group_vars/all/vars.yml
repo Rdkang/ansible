@@ -17,7 +17,7 @@ pip_install_packages:
   - name: docker
 
 docker_users:
-  - { { username } }
+  - "{{ username }}"
 
 packages:
   - neovim

@@ -1,0 +1,6 @@
+---
+- name: Make sure crond is started
+  service:
+    name: crond
+    state: started
+    enabled: true

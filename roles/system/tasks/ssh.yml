@@ -1,0 +1,7 @@
+- name: Disable SSH password authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^#PasswordAuthentication no"
+  register: sshd_config
+  notify: Restart sshd
+# by default will do notify at the end of the playbook, but using - meta: flush_handlers

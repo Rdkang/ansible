@@ -1,0 +1,10 @@
+---
+# vim:ft=yaml.ansible
+- hosts: all
+  name: Everything
+  become: true # use root
+
+  roles:
+    - role: system
+  # - role: geerlingguy.pip
+  # - role: geerlingguy.docker
