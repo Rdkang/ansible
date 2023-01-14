@@ -1,4 +1,5 @@
 ---
+# vim:ft=yaml.ansible
 username: rdkang
 
 timezone: Europe/London
@@ -16,14 +17,6 @@ dotfiles_repo: https://github.com/rdkang/dotfiles
 pip_install_packages:
   - name: docker
 
-packages:
-  - neovim
-  - vim
-  - ansible-lint
-  - tmux
-  - speedtest-cli
-  - neofetch
-
 docker_users:
   - "{{ username }}"
 docker_install_compose: true
@@ -34,3 +27,101 @@ docker_packages:
   - "docker-{{ docker_edition }}-rootless-extras"
 docker_packages_state: present
 docker_yum_repo_enable_nightly: "1"
+
+packages:
+  - ImageMagick
+  - anki
+  - ansible-lint
+  - apprise
+  - bat
+  - borgmatic
+  - chromium
+  - dateutils
+  - dbus-devel
+  - ddcutil
+  - duf
+  - fd-find
+  - firewall-config
+  - fish
+  - fuse-sshfs
+  - fzf
+  - gamemode
+  - gcc-c++
+  - git-delta
+  - git-extras
+  - gnome-extensions-app
+  - gnome-shell-extension-appindicator
+  - gnome-shell-extension-pop-shell
+  - gnome-tweaks
+  - goverlay
+  - hyperfine
+  - kitty
+  - kvantum
+  - lazygit
+  - libappindicator
+  - libgda
+  - libgda-sqlite
+  - libstdc++-static
+  - lm_sensors
+  - lsd
+  - meson
+  - mpv
+  - ncmpcpp
+  - neofetch
+  - neovim
+  - nnn
+  - npm
+  - openssl
+  - openssl1.1
+  - pkg-config
+  - python-rich
+  - rofi
+  - speedtest-cli
+  - steam
+  - stress
+  - sxhkd
+  - systemd-devel
+  - tealdeer
+  - thinkfan
+  - tmux
+  - trash-cli
+  - util-linux-user
+  - vim
+  - vlc
+  - wireguard-tools
+  - wl-clipboard
+  - xclip
+  - xprop
+  - zoxide
+  - zsh
+  - adw-gtk3
+  - nsxiv
+  - bibata-cursor-themes
+
+packages_essential:
+  - rpmfusion-free-release-tainted
+  - dnf-plugins-core
+  - curl
+  - cabextract
+  - xorg-x11-font-utils
+  - fontconfig
+  - gstreamer1-plugin-openh264
+  - mozilla-openh264
+  - libdvdcss
+
+package_homebrew:
+  - yadm
+  - "jesseduffield/lazydocker/lazydocker"
+  - tmuxinator
+  - atuin
+  - commitizen
+  - commitlint
+  - rga
+  - spotifyd
+  - watchexec
+
+packages_copr:
+  - "mamg22/nsxiv"
+  - "atim/lazygit"
+  - "peterwu/rendezvous"
+  - "nickavem/adw-gtk3"

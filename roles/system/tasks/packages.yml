@@ -1,3 +1,28 @@
+# vim:ft=yaml.ansible
+#
+- name: Dnf configure
+  ansible.builtin.blockinfile:
+    path: /etc/dnf/dnf.conf
+    block: |
+      max_parallel_downloads=10
+      fastestmirror=True
+      defaultTrue=yes
+      defaultyes=True
+
+- name: Add DNF repos
+  dnf:
+    enablerepo:
+      [
+        "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm",
+        " https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm ",
+        "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm",
+      ]
+
+# - name: DNF copr repos
+#   community.general.copr:
+#     name: "{{ packages_copr }}"
+#     state: "enabled"
+#
 - name: Update packages
   dnf:
     name: "*"
@@ -5,7 +30,18 @@
 
 - name: Install essential packages
   dnf:
-    name: "{{ packages }}"
+    name: "{{ packages_essential }}"
+    state: present
+
+- name: Install moi packages
+  dnf:
+    name:
+      - "{{ packages }}"
+      # - "@Development tools"
+      # - "https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm"
+      # - sound-and-video
+      # - 'gstreamer1-plugins-{bad-\*,good-\*,ugly-\*,base} gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel ffmpeg gstreamer-ffmpeg'
+      # - 'lame\* --exclude=lame-devel'
     state: present
 
 - name: Install Python and python3-pip
@@ -15,11 +51,7 @@
       - python3-pip
     state: present
 
-- name: Dnf configure
-  ansible.builtin.blockinfile:
-    path: /etc/dnf/dnf.conf
-    block: |
-      max_parallel_downloads=10
-      fastestmirror=True
-      defaultTrue=yes
-      defaultyes=True
+- name: Install homebrew packages
+  community.general.homebrew:
+    name: "{{ packages_homebrew }}"
+    state: present
