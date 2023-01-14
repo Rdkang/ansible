@@ -1,0 +1,28 @@
+---
+username: rdkang
+
+timezone: Europe/London
+
+ntp_timezone: "{{ timezone }}"
+
+locale: en_GB.UTF-8
+
+keyboard_layout: gb
+
+shell: /usr/bin/zsh
+
+dotfiles_repo: https://github.com/rdkang/dotfiles
+
+pip_install_packages:
+  - name: docker
+
+docker_users:
+  - { { username } }
+
+packages:
+  - neovim
+  - vim
+  - ansible-lint
+  - tmux
+  - speedtest-cli
+  - neofetch
