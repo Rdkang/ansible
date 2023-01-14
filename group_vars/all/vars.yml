@@ -16,9 +16,6 @@ dotfiles_repo: https://github.com/rdkang/dotfiles
 pip_install_packages:
   - name: docker
 
-docker_users:
-  - "{{ username }}"
-
 packages:
   - neovim
   - vim
@@ -26,3 +23,14 @@ packages:
   - tmux
   - speedtest-cli
   - neofetch
+
+docker_users:
+  - "{{ username }}"
+docker_install_compose: true
+docker_edition: "ce"
+docker_packages:
+  - "docker-{{ docker_edition }}"
+  - "docker-{{ docker_edition }}-cli"
+  - "docker-{{ docker_edition }}-rootless-extras"
+docker_packages_state: present
+docker_yum_repo_enable_nightly: "1"

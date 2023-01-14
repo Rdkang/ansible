@@ -6,5 +6,5 @@
 
   roles:
     - role: system
-  # - role: geerlingguy.pip
-  # - role: geerlingguy.docker
+    - role: geerlingguy.pip
+    # - role: geerlingguy.docker

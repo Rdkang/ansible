@@ -9,7 +9,6 @@
   user:
     name: "{{ username }}"
     groups:
-      - sudo
       - docker
       - users
       - "{{ username }}"
