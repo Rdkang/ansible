@@ -6,10 +6,13 @@
 
 - name: Installs and updates packages
   include_tasks: packages.yml
-  tags: packages
+  # tags: packages
 
 - name: Makes sure system services are running
   include_tasks: services.yml
+
+- name: Sets up tmux
+  include_tasks: tmux.yml
 
 - name: Sets up users
   include_tasks: users.yml

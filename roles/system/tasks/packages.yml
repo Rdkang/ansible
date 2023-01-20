@@ -1,6 +1,6 @@
 # vim:ft=yaml.ansible
-#
-- name: Dnf configure
+
+- name: Configuring DNF
   ansible.builtin.blockinfile:
     path: /etc/dnf/dnf.conf
     block: |
@@ -18,40 +18,42 @@
         "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm",
       ]
 
+# FIX: this
 # - name: DNF copr repos
+#   tags: copr
 #   community.general.copr:
 #     name: "{{ packages_copr }}"
 #     state: "enabled"
-#
+
 - name: Update packages
   dnf:
     name: "*"
     state: latest
 
-- name: Install essential packages
-  dnf:
-    name: "{{ packages_essential }}"
-    state: present
+# FIX:
+# - name: Install essential packages
+#   dnf:
+#     name: "{{ packages_essential }}"
+#     state: present
 
-- name: Install moi packages
-  dnf:
-    name:
-      - "{{ packages }}"
-      # - "@Development tools"
-      # - "https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm"
-      # - sound-and-video
-      # - 'gstreamer1-plugins-{bad-\*,good-\*,ugly-\*,base} gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel ffmpeg gstreamer-ffmpeg'
-      # - 'lame\* --exclude=lame-devel'
-    state: present
+# - name: Install terminal packages
+#   dnf:
+#     name: "{{ packages_terminal }}"
+#     state: present
 
-- name: Install Python and python3-pip
-  package:
-    name:
-      - python3
-      - python3-pip
-    state: present
+# - name: Install desktop packages
+#   dnf:
+#     name:
+#       - "{{ packages_desktop }}"
+#       # - "@Development tools"
+#       # - "https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm"
+#       # - sound-and-video
+#       # - 'gstreamer1-plugins-{bad-\*,good-\*,ugly-\*,base} gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel ffmpeg gstreamer-ffmpeg'
+#       # - 'lame\* --exclude=lame-devel'
+#     state: present
 
 - name: Install homebrew packages
+  become: false
   community.general.homebrew:
     name: "{{ packages_homebrew }}"
     state: present
