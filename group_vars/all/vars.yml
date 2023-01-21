@@ -28,47 +28,44 @@ docker_packages:
 docker_packages_state: present
 docker_yum_repo_enable_nightly: "1"
 
-packages_desktop:
+packages:
+  - ImageMagick
   - anki
+  - ansible-lint
+  - apprise
+  - bat
+  - borgmatic
   - chromium
+  - dateutils
+  - dbus-devel
+  - ddcutil
+  - duf
+  - fd-find
   - firewall-config
+  - fish
+  - fuse-sshfs
+  - fzf
   - gamemode
+  - gcc-c++
+  - git-delta
+  - git-extras
   - gnome-extensions-app
   - gnome-shell-extension-appindicator
   - gnome-shell-extension-pop-shell
   - gnome-tweaks
   - goverlay
+  - hyperfine
   - kitty
   - kvantum
-  - mpv
-  - steam
-  - sxhkd
-  - vlc
-  - wl-clipboard
-  - adw-gtk3
-  - nsxiv
-  - bibata-cursor-themes
-
-packages_terminal:
-  - zsh
-  - cowsay
-  - lolcat
-  - xclip
-  - wireguard-tools
-  - vim
-  - meson
+  - lazygit
+  - libappindicator
+  - libgda
+  - libgda-sqlite
+  - libstdc++-static
+  - lm_sensors
   - lsd
-  - xprop
-  - zoxide
-  - systemd-devel
-  - tealdeer
-  - thinkfan
-  - tmux
-  - trash-cli
-  - util-linux-user
-  - stress
-  - speedtest-cli
-  - rofi
+  - meson
+  - mpv
   - ncmpcpp
   - neofetch
   - neovim
@@ -78,29 +75,28 @@ packages_terminal:
   - openssl1.1
   - pkg-config
   - python-rich
-  - lazygit
-  - libappindicator
-  - libgda
-  - libgda-sqlite
-  - libstdc++-static
-  - lm_sensors
-  - hyperfine
-  - gcc-c++
-  - git-delta
-  - git-extras
-  - fish
-  - fuse-sshfs
-  - fzf
-  - dateutils
-  - dbus-devel
-  - ddcutil
-  - duf
-  - fd-find
-  - ansible-lint
-  - apprise
-  - bat
-  - borgmatic
-  - ImageMagick
+  - rofi
+  - speedtest-cli
+  - steam
+  - stress
+  - sxhkd
+  - systemd-devel
+  - tealdeer
+  - thinkfan
+  - tmux
+  - trash-cli
+  - util-linux-user
+  - vim
+  - vlc
+  - wireguard-tools
+  - wl-clipboard
+  - xclip
+  - xprop
+  - zoxide
+  - zsh
+  - adw-gtk3
+  - nsxiv
+  - bibata-cursor-themes
 
 packages_essential:
   - rpmfusion-free-release-tainted
@@ -112,10 +108,8 @@ packages_essential:
   - gstreamer1-plugin-openh264
   - mozilla-openh264
   - libdvdcss
-  - python3
-  - python3-pip
 
-packages_homebrew:
+package_homebrew:
   - yadm
   - "jesseduffield/lazydocker/lazydocker"
   - tmuxinator
@@ -127,7 +121,7 @@ packages_homebrew:
   - watchexec
 
 packages_copr:
-  # - "copr.fedorainfracloud.org/coprs/mamg22/nsxiv"
-  # - "@atim/lazygit"
-  # - "@peterwu/rendezvous"
-  # - "@nickavem/adw-gtk3"
+  - "mamg22/nsxiv"
+  - "atim/lazygit"
+  - "peterwu/rendezvous"
+  - "nickavem/adw-gtk3"
