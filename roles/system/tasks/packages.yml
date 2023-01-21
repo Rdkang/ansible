@@ -57,3 +57,26 @@
   community.general.homebrew:
     name: "{{ packages_homebrew }}"
     state: present
+
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+# https://flathub.org/repo/flathub.flatpakrepo
+# method: user
+
+- name: Install Flatpak packages
+  community.general.flatpak:
+    name:
+      - org.gimp.GIMP
+      - org.inkscape.Inkscape
+      - com.github.iwalton3.jellyfin-media-player
+      - com.mattjakeman.ExtensionManager
+      - com.spotify.Client
+      - md.obsidian.Obsidian
+      - io.github.Foldex.AdwSteamGtk
+      - org.gtk.Gtk3theme.adw-gtk3
+      - org.gtk.Gtk3theme.adw-gtk3-dark
+      - net.ankiweb.Anki
+    state: present
