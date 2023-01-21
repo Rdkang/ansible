@@ -68,15 +68,5 @@
 
 - name: Install Flatpak packages
   community.general.flatpak:
-    name:
-      - org.gimp.GIMP
-      - org.inkscape.Inkscape
-      - com.github.iwalton3.jellyfin-media-player
-      - com.mattjakeman.ExtensionManager
-      - com.spotify.Client
-      - md.obsidian.Obsidian
-      - io.github.Foldex.AdwSteamGtk
-      - org.gtk.Gtk3theme.adw-gtk3
-      - org.gtk.Gtk3theme.adw-gtk3-dark
-      - net.ankiweb.Anki
+    name: "{{ packages_flatpak }}"
     state: present

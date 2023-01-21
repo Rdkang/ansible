@@ -109,7 +109,7 @@ packages_essential:
   - mozilla-openh264
   - libdvdcss
 
-package_homebrew:
+packages_homebrew:
   - yadm
   - "jesseduffield/lazydocker/lazydocker"
   - tmuxinator
@@ -125,3 +125,16 @@ packages_copr:
   - "atim/lazygit"
   - "peterwu/rendezvous"
   - "nickavem/adw-gtk3"
+
+packages_flatpak:
+  - org.gimp.GIMP
+  - org.inkscape.Inkscape
+  - com.github.iwalton3.jellyfin-media-player
+  - com.mattjakeman.ExtensionManager
+  - com.spotify.Client
+  - md.obsidian.Obsidian
+  - io.github.Foldex.AdwSteamGtk
+  - org.gtk.Gtk3theme.adw-gtk3
+  - org.gtk.Gtk3theme.adw-gtk3-dark
+  - net.ankiweb.Anki
+  - org.onlyoffice.desktopeditors
