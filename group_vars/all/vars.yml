@@ -16,6 +16,7 @@ dotfiles_repo: https://github.com/rdkang/dotfiles
 
 pip_install_packages:
   - name: docker
+  - name: bdfr
 
 docker_users:
   - "{{ username }}"
