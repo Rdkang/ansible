@@ -1,0 +1,8 @@
+- name: cron to sort torrent file
+
+  ansible.builtin.cron:
+    name: "check dirs"
+    minute: "5"
+    job: "fd -d 1 -e torrent  --full-path /home/{{ username }}/Downloads -x mv {} /home/{{ username }}/Downloads/Torrents"
+    user: "{{ username }}"
+    state: present

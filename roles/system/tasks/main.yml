@@ -16,3 +16,6 @@
 
 - name: Sets up users
   include_tasks: users.yml
+
+- name: Sets up cron jobs
+  include_tasks: cron.yml
