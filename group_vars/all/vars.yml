@@ -98,6 +98,7 @@ packages:
   - adw-gtk3
   - nsxiv
   - bibata-cursor-themes
+  - perl-Image-ExifTool
 
 packages_essential:
   - rpmfusion-free-release-tainted
