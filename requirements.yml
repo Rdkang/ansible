@@ -3,3 +3,4 @@ roles:
   - name: geerlingguy.docker
   - name: geerlingguy.pip
   - name: community.general
+  - name: ansible.posix # firewalld

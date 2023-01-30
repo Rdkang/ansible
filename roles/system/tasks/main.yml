@@ -1,6 +1,6 @@
 ---
 # vim:ft=yaml.ansible
-#
+
 - name: Setup ssh
   include_tasks: ssh.yml
 
@@ -19,3 +19,6 @@
 
 - name: Sets up cron jobs
   include_tasks: cron.yml
+
+- name: Set up firewall
+  include_tasks: firewall.yml

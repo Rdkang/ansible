@@ -1,0 +1,7 @@
+# https://docs.ansible.com/ansible/latest/collections/ansible/posix/firewalld_module.html
+- name: open ports for kdeconnect
+  ansible.posix.firewalld:
+    port: 1716-1764/tcp,1716-1764/udp
+    zone: home
+    permanent: yes
+    state: enabled
