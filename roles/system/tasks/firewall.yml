@@ -5,3 +5,4 @@
     zone: home
     permanent: yes
     state: enabled
+  when: "'servers' not in group_names"
