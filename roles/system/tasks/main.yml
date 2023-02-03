@@ -22,3 +22,6 @@
 
 - name: Set up firewall
   include_tasks: firewall.yml
+
+- name: Set up borg
+  include_tasks: borg.yml
