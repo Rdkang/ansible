@@ -2,5 +2,7 @@
 roles:
   - name: geerlingguy.docker
   - name: geerlingguy.pip
+
+collections:
   - name: community.general
   - name: ansible.posix # firewalld
