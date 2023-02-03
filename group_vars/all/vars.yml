@@ -27,78 +27,7 @@ docker_packages:
   - "docker-{{ docker_edition }}-cli"
   - "docker-{{ docker_edition }}-rootless-extras"
 docker_packages_state: present
-docker_yum_repo_enable_nightly: "1"
-
-packages:
-  - ImageMagick
-  - anki
-  - ansible-lint
-  - apprise
-  - bat
-  - borgmatic
-  - chromium
-  - dateutils
-  - dbus-devel
-  - ddcutil
-  - duf
-  - fd-find
-  - firewall-config
-  - fish
-  - fuse-sshfs
-  - fzf
-  - gamemode
-  - gcc-c++
-  - git-delta
-  - git-extras
-  - gnome-extensions-app
-  - gnome-shell-extension-appindicator
-  - gnome-shell-extension-pop-shell
-  - gnome-tweaks
-  - goverlay
-  - hyperfine
-  - kitty
-  - kvantum
-  - lazygit
-  - libappindicator
-  - libgda
-  - libgda-sqlite
-  - libstdc++-static
-  - lm_sensors
-  - lsd
-  - meson
-  - mpv
-  - ncmpcpp
-  - neofetch
-  - neovim
-  - nnn
-  - npm
-  - openssl
-  - openssl1.1
-  - pkg-config
-  - python-rich
-  - rofi
-  - speedtest-cli
-  - steam
-  - stress
-  - sxhkd
-  - systemd-devel
-  - tealdeer
-  - thinkfan
-  - tmux
-  - trash-cli
-  - util-linux-user
-  - vim
-  - vlc
-  - wireguard-tools
-  - wl-clipboard
-  - xclip
-  - xprop
-  - zoxide
-  - zsh
-  - adw-gtk3
-  - nsxiv
-  - bibata-cursor-themes
-  - perl-Image-ExifTool
+# docker_yum_repo_enable_nightly: "1"
 
 packages_essential:
   - rpmfusion-free-release-tainted
@@ -110,6 +39,80 @@ packages_essential:
   - gstreamer1-plugin-openh264
   - mozilla-openh264
   - libdvdcss
+  - openssl
+  - openssl1.1
+  - gcc-c++
+  - libstdc++-static
+
+packages_cli:
+  - ImageMagick
+  - ansible-lint
+  - apprise
+  - bat
+  - borgmatic
+  - dateutils
+  - ddcutil
+  - duf
+  - fd-find
+  - firewall-config
+  - fish
+  - fuse-sshfs
+  - fzf
+  - git-extras
+  - git-delta
+  - hyperfine
+  - lazygit
+  - lm_sensors
+  - lsd
+  - ncmpcpp
+  - mpv
+  - neofetch
+  - neovim
+  - nnn
+  - npm
+  - systemd-devel
+  - python-rich
+  - speedtest-cli
+  - stress
+  - tealdeer
+  - thinkfan
+  - tmux
+  - trash-cli
+  - vim
+  - wl-clipboard
+  - xclip
+  - xprop
+  - zoxide
+  - zsh
+  - perl-Image-ExifTool
+  - wireguard-tools
+  - util-linux-user
+
+packages_desktop:
+  - chromium
+  - gnome-extensions-app
+  - gnome-shell-extension-appindicator
+  - gnome-shell-extension-pop-shell
+  - gnome-tweaks
+  - goverlay
+  - kitty
+  - kvantum
+  - libappindicator
+  - libgda
+  - libgda-sqlite
+  - meson
+  - pkg-config
+  - rofi
+  - steam
+  - sxhkd
+  - vlc
+  - adw-gtk3
+  - nsxiv
+  - bibata-cursor-themes
+
+packages_gaming:
+  - dbus-devel
+  - gamemode
 
 packages_homebrew:
   - yadm
