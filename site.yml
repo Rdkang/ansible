@@ -5,6 +5,7 @@
   become: true # use root
 
   roles:
+    - role: monolithprojects.homebrew
     - role: system
     - role: geerlingguy.pip
     - role: geerlingguy.docker

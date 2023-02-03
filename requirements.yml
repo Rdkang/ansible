@@ -2,6 +2,7 @@
 roles:
   - name: geerlingguy.docker
   - name: geerlingguy.pip
+  - name: monolithprojects.homebrew
 
 collections:
   - name: community.general

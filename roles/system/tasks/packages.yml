@@ -1,4 +1,5 @@
 # vim:ft=yaml.ansible
+#
 
 - name: Configuring DNF
   ansible.builtin.blockinfile:
@@ -57,6 +58,7 @@
 #       # - 'gstreamer1-plugins-{bad-\*,good-\*,ugly-\*,base} gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel ffmpeg gstreamer-ffmpeg'
 #       # - 'lame\* --exclude=lame-devel'
 #     state: present
+#
 - name: Install homebrew packages
   become: false
   community.general.homebrew:
