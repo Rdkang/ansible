@@ -140,3 +140,5 @@ packages_flatpak:
   - org.gtk.Gtk3theme.adw-gtk3-dark
   - net.ankiweb.Anki
   - org.onlyoffice.desktopeditors
+  - dev.geopjr.Collision
+  - fr.romainvigier.MetadataCleaner
