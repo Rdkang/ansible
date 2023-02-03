@@ -26,22 +26,27 @@
 #     name: "{{ packages_copr }}"
 #     state: "enabled"
 
-- name: Update packages
+- name: Install essential packages
   dnf:
-    name: "*"
-    state: latest
+    name: "{{ packages_essential }}"
+    state: present
 
-# FIX:
-# - name: Install essential packages
-#   dnf:
-#     name: "{{ packages_essential }}"
-#     state: present
+- name: Install cli packages
+  dnf:
+    name: "{{ packages_cli }}"
+    state: present
 
-# - name: Install terminal packages
-#   dnf:
-#     name: "{{ packages_terminal }}"
-#     state: present
+- name: Install gaming packages
+  dnf:
+    name: "{{ packages_gaming }}"
+    state: present
+  when: "'servers' not in group_names"
 
+- name: Install desktop packages
+  dnf:
+    name: "{{ packages_desktop }}"
+    state: present
+  when: "'servers' not in group_names"
 # - name: Install desktop packages
 #   dnf:
 #     name:
@@ -52,7 +57,6 @@
 #       # - 'gstreamer1-plugins-{bad-\*,good-\*,ugly-\*,base} gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel ffmpeg gstreamer-ffmpeg'
 #       # - 'lame\* --exclude=lame-devel'
 #     state: present
-
 - name: Install homebrew packages
   become: false
   community.general.homebrew:
