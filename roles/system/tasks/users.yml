@@ -1,3 +1,4 @@
+---
 - name: Enable passwordless sudo for {{ username }}
   lineinfile:
     dest: /etc/sudoers
@@ -5,14 +6,14 @@
     line: "{{ username }} ALL=(ALL) NOPASSWD: ALL"
     validate: "/usr/sbin/visudo -cf %s"
 
-- name: Ensure {{ username }} is created
+- name: Creates user of {{ username }}
   user:
     name: "{{ username }}"
     groups:
       - docker
       - users
       - "{{ username }}"
-    append: yes
+    append: true
     shell: "{{ shell }}"
     # password: "{{ password }}"
     # update_password: on_create
