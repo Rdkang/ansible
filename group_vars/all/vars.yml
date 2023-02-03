@@ -125,6 +125,9 @@ packages_homebrew:
   - spotifyd
   - watchexec
 
+packages_cargo:
+  - dust
+
 packages_copr:
   - "mamg22/nsxiv"
   - "atim/lazygit"

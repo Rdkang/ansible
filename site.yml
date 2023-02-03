@@ -9,3 +9,4 @@
     - role: system
     - role: geerlingguy.pip
     - role: geerlingguy.docker
+    - role: ableton/rustup_init

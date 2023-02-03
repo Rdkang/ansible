@@ -3,6 +3,7 @@ roles:
   - name: geerlingguy.docker
   - name: geerlingguy.pip
   - name: monolithprojects.homebrew
+  - name: ableton.rustup_init
 
 collections:
   - name: community.general
