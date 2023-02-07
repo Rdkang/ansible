@@ -87,6 +87,7 @@ packages_cli:
   - perl-Image-ExifTool
   - wireguard-tools
   - util-linux-user
+  - android-tools
 
 packages_desktop:
   - chromium
@@ -148,3 +149,4 @@ packages_flatpak:
   - org.onlyoffice.desktopeditors
   - dev.geopjr.Collision
   - fr.romainvigier.MetadataCleaner
+  - net.hovancik.Stretchly
