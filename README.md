@@ -6,7 +6,7 @@ The playbook is mostly being developed for personal use, so stuff is going to be
 
 ### Getting started
 ```bash
-ansible-playbook site.yml
+ansible-playbook main.yml
 ```
 
 ## 🎉 Acknowledgements
