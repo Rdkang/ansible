@@ -1,0 +1,40 @@
+# vim:ft=yaml.ansible
+
+- name: Sets up DNF
+  include_tasks: dnf.yml
+
+- name: Install essential packages
+  dnf:
+    name: "{{ packages_essential }}"
+    state: present
+
+- name: Install cli packages
+  dnf:
+    name: "{{ packages_cli }}"
+    state: present
+
+- name: Install gaming packages
+  dnf:
+    name: "{{ packages_gaming }}"
+    state: present
+  when: "'servers' not in group_names"
+
+- name: Install desktop packages
+  dnf:
+    name: "{{ packages_desktop }}"
+    state: present
+  when: "'servers' not in group_names"
+
+# - name: Install Cargo packages
+#   community.general.cargo:
+#     name: "{{ packages_cargo }}"
+#     # path: /usr/local
+
+- name: Install homebrew packages
+  become: false
+  community.general.homebrew:
+    name: "{{ packages_homebrew }}"
+    state: present
+
+- name: Sets up flatpak
+  include_tasks: flatpak.yml

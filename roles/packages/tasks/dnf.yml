@@ -1,6 +1,3 @@
-# vim:ft=yaml.ansible
-#
-
 - name: Configuring DNF
   ansible.builtin.blockinfile:
     path: /etc/dnf/dnf.conf
@@ -19,50 +16,8 @@
         "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm ",
         "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm",
       ]
-
-- name: Install essential packages
-  dnf:
-    name: "{{ packages_essential }}"
-    state: present
-
-- name: Install cli packages
-  dnf:
-    name: "{{ packages_cli }}"
-    state: present
-
-- name: Install gaming packages
-  dnf:
-    name: "{{ packages_gaming }}"
-    state: present
-  when: "'servers' not in group_names"
-
-- name: Install desktop packages
-  dnf:
-    name: "{{ packages_desktop }}"
-    state: present
-
-- name: Install Cargo packages
-  community.general.cargo:
-    name: "{{ packages_cargo }}"
-    # path: /usr/local
-
-- name: Install homebrew packages
-  become: false
-  community.general.homebrew:
-    name: "{{ packages_homebrew }}"
-    state: present
-
-- name: Add the flathub flatpak repository remote to the user installation
-  community.general.flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-
-- name: Install Flatpak packages
-  community.general.flatpak:
-    name: "{{ packages_flatpak }}"
-    state: present
 # TODO:
+#
 # - name: DNF copr repos
 #   tags: copr
 #   community.general.copr:

@@ -4,10 +4,6 @@
 - name: Setup ssh
   include_tasks: ssh.yml
 
-- name: Installs and updates packages
-  include_tasks: packages.yml
-  # tags: packages
-
 - name: Makes sure system services are running
   include_tasks: services.yml
 

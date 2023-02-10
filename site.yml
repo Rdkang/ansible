@@ -6,7 +6,8 @@
 
   roles:
     - role: monolithprojects.homebrew
+    # - role: ableton.rustup_init
+    - role: packages
     - role: system
     - role: geerlingguy.pip
     - role: geerlingguy.docker
-    - role: ableton/rustup_init
