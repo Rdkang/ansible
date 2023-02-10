@@ -1,7 +1,9 @@
+---
 # vim:ft=yaml.ansible
 
 - name: Sets up DNF
   include_tasks: dnf.yml
+  when: ansible_os_family == 'RedHat'
 
 - name: Install essential packages
   dnf:
