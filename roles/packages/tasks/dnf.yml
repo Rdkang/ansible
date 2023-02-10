@@ -16,6 +16,17 @@
         "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm ",
         "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm",
       ]
+
+- name: Install dnf-automatic.
+  dnf:
+    name: dnf-automatic
+    state: present
+
+- name: Ensure dnf-automatic is running and enabled on boot.
+  service:
+    name: dnf-automatic-install.timer
+    state: started
+    enabled: yes
 # TODO:
 #
 # - name: DNF copr repos
