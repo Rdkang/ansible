@@ -36,12 +36,11 @@
 - name: Permissions for spotify
   when: "'servers' not in group_names"
   file:
-    path: /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify
-    mode: a+wr
-
-- name: Permissions for spotify recurse
-  when: "'servers' not in group_names"
-  file:
-    path: /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/Apps
+    path: "{{ item }}"
     mode: a+wr
     recurse: true
+  loop:
+    - /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify
+    - /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/Apps
+# curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh
+# curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.sh | sh
