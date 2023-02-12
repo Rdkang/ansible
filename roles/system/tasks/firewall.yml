@@ -4,6 +4,5 @@
     port: 1716-1764/tcp,1716-1764/udp
     zone: home
     permanent: yes
-    immediate: yes
     state: enabled
   when: "'servers' not in group_names"

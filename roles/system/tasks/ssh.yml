@@ -4,4 +4,5 @@
     regexp: "^#PasswordAuthentication yes"
     line: "PasswordAuthentication no"
   notify: Restart sshd
+  when: "'servers' in group_names"
 # by default will do notify at the end of the playbook, but using - meta: flush_handlers
