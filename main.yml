@@ -5,9 +5,14 @@
   become: true
 
   roles:
+    - role: spotify
+      tags: spotify
     - role: monolithprojects.homebrew
-    # - role: ableton.rustup_init
     - role: packages
+      tags: packages
     - role: system
+      tags: system
     - role: geerlingguy.pip
     - role: geerlingguy.docker
+
+    # - role: ableton.rustup_init

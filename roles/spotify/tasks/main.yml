@@ -1,0 +1,47 @@
+---
+# - name: Generate spicetify config
+#   become: true
+#   become_user: "{{ username }}"
+#   command: "spicetify"
+#
+# - name: Create backup
+#   become: true
+#   become_user: "{{ username }}"
+#   command: "spicetify backup apply"
+#
+# # - name: Clone theme
+# #   git:
+# #     dest: "{{ user_home}}/.config/spicetify/Themes/{{ theme }}"
+# #     repo: "https://github.com/davidmogar/spicetify-{{ theme }}.git"
+#
+# # - name: Update config file
+# #   become: true
+# #   template:
+# #     dest: "{{ user_home }}/.config/spicetify/config.ini"
+# #     mode: 0644
+# #     src: "config.ini.j2"
+#
+# - name: Apply theme
+#   become: true
+#   become_user: "{{ username }}"
+#   command: "spicetify update"
+#
+# #### moi
+# - name: Install spicetify using homebrew
+#   become: false
+#   community.general.homebrew:
+#     name: "spicetify/homebrew-tap/spicetify-cli"
+#     state: present
+
+- name: Permissions for spotify
+  when: "'servers' not in group_names"
+  file:
+    path: /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify
+    mode: a+wr
+
+- name: Permissions for spotify recurse
+  when: "'servers' not in group_names"
+  file:
+    path: /var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/Apps
+    mode: a+wr
+    recurse: true
