@@ -1,4 +1,4 @@
-- name: Clone a github repository
+- name: Sets up tpm
   git:
     repo: https://github.com/tmux-plugins/tpm
     dest: /home/{{ username }}/.tmux/plugins/tpm

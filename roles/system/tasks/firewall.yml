@@ -1,8 +1,19 @@
 # https://docs.ansible.com/ansible/latest/collections/ansible/posix/firewalld_module.html
+- name: Make sure firewalld is started
+  service:
+    name: firewalld
+    state: started
+    enabled: true
+  when: "'servers' not in group_names"
+
 - name: open ports for kdeconnect
+  become: true
   ansible.posix.firewalld:
-    port: 1716-1764/tcp,1716-1764/udp
+    port: "{{ item }}"
     zone: home
     permanent: yes
     state: enabled
+  loop:
+    - "1716-1764/tcp"
+    - "1716-1764/udp"
   when: "'servers' not in group_names"
