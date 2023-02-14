@@ -43,6 +43,7 @@ packages_essential:
   - openssl1.1
   - gcc-c++
   - libstdc++-static
+  - xset
 
 packages_cli:
   - ImageMagick
