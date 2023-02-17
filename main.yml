@@ -12,6 +12,8 @@
       tags: packages
     - role: system
       tags: system
+    - role: backups
+      tags: backups
     - role: geerlingguy.pip
     - role: geerlingguy.docker
 

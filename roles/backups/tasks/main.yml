@@ -1,0 +1,47 @@
+---
+- name: borgmatic service file
+  become: true
+  copy:
+    dest: /etc/systemd/system/borgBacker.service
+    owner: root
+    group: root
+    mode: "0644"
+    backup: yes
+    content: |
+      [Unit]
+      Description=Borgmatic system backup
+      Requires=network.target
+      After=network.target
+
+      [Service]
+      Type=oneshot
+      Nice=10
+      User=root
+      IOSchedulingClass=best-effort
+      IOSchedulingPriority=6
+      ProtectSystem=full
+      ExecStart=/usr/bin/borgmatic --verbosity -1 --syslog-verbosity 1
+
+- name: borgmatic timer file
+  become: true
+  copy:
+    dest: /etc/systemd/system/borgBacker.timer
+    owner: root
+    group: root
+    mode: "0644"
+    backup: yes
+    content: |
+      [Unit]
+      Description=Daily borgmatic backup timer
+
+      [Timer]
+      OnCalendar=*-*-* 03:00:00
+      Persistent=true
+      [Install]
+      WantedBy=timers.target
+
+- name: Enable a timer for borgmatic
+  ansible.builtin.systemd:
+    name: borgBacker.timer
+    state: started
+    enabled: true
