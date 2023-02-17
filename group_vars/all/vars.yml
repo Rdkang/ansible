@@ -47,6 +47,7 @@ packages_essential:
 
 packages_cli:
   - ImageMagick
+  - android-tools
   - ansible-lint
   - apprise
   - bat
@@ -59,36 +60,37 @@ packages_cli:
   - fish
   - fuse-sshfs
   - fzf
-  - git-extras
   - git-delta
+  - git-extras
+  - hugo
   - hyperfine
   - lazygit
   - lm_sensors
   - lsd
-  - ncmpcpp
   - mpv
+  - ncmpcpp
   - neofetch
   - neovim
   - nnn
   - npm
-  - systemd-devel
+  - perl-Image-ExifTool
+  - powertop
   - python-rich
   - speedtest-cli
   - stress
+  - systemd-devel
   - tealdeer
   - thinkfan
   - tmux
   - trash-cli
+  - util-linux-user
   - vim
+  - wireguard-tools
   - wl-clipboard
   - xclip
   - xprop
   - zoxide
   - zsh
-  - perl-Image-ExifTool
-  - wireguard-tools
-  - util-linux-user
-  - android-tools
 
 packages_desktop:
   - chromium
