@@ -45,3 +45,11 @@
     name: borgBacker.timer
     state: started
     enabled: true
+
+- name: Make borgmatic folder ownded by {{ username }}
+  file:
+    path: /etc/borgmatic
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+    recurse: yes
