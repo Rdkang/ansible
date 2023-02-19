@@ -4,3 +4,31 @@
     name: crond
     state: started
     enabled: true
+
+- name: Creates service file to disable keyboard wakeup
+  # https://ubuntu-mate.community/t/stop-usb-wake-from-suspend/23195
+  become: true
+  when: "'desktop' in group_names"
+  copy:
+    dest: /etc/systemd/system/keyboard-disable-wakeup.service
+    owner: root
+    group: root
+    mode: "0644"
+    backup: yes
+    content: |
+      [Unit]
+      Description=Disable keyboard wake from suspend
+
+      [Service]
+      Type=oneshot
+      ExecStart=/bin/sh -c "for i in $(cat /proc/acpi/wakeup | grep enabled | grep ^XH | awk '{print $1}' | xargs); do [ $i != PBTN ] && echo $i|tee /proc/acpi/wakeup;done"
+
+      [Install]
+      WantedBy=multi-user.target
+
+- name: Enable service to disable keyboard wakeup
+  when: "'desktop' in group_names"
+  ansible.builtin.systemd:
+    name: keyboard-disable-wakeup.service
+    state: started
+    enabled: true
