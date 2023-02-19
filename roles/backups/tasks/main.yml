@@ -10,19 +10,31 @@
     content: |
       [Unit]
       Description=Borgmatic system backup
-      Requires=network.target
-      After=network.target
+      Wants=network-online.target
+      After=network-online.target
 
       [Service]
       Type=oneshot
-      Nice=10
       User=root
-      IOSchedulingClass=best-effort
-      IOSchedulingPriority=6
       ProtectSystem=full
-      ExecStart=/usr/bin/borgmatic --verbosity -1 --syslog-verbosity 1
 
-- name: borgmatic timer file
+      Restart=no
+      # Prevent rate limiting of borgmatic log events
+      LogRateLimitIntervalSec=0
+
+      # Lower CPU and I/O priority.
+      Nice=19
+      CPUSchedulingPolicy=batch
+      IOSchedulingClass=best-effort
+      IOSchedulingPriority=7
+      IOWeight=100
+
+
+      ExecStartPre=sleep 1m
+      ExecStart=systemd-inhibit --who="borgmatic" --what="sleep:shutdown" --why="Prevent interrupting scheduled backup" /usr/bin/borgmatic --verbosity -1 --syslog-verbosity 1
+
+- name: borgmatic timer file for server
+  when: "'servers' in group_names"
   become: true
   copy:
     dest: /etc/systemd/system/borgBacker.timer
@@ -40,6 +52,25 @@
       [Install]
       WantedBy=timers.target
 
+- name: borgmatic timer file desktops/laptops
+  when: "'servers' not in group_names"
+  become: true
+  copy:
+    dest: /etc/systemd/system/borgBacker.timer
+    owner: root
+    group: root
+    mode: "0644"
+    backup: yes
+    content: |
+      [Unit]
+      Description=Daily borgmatic backup timer
+
+      [Timer]
+      OnCalendar=*-*-* */6:00:00
+      Persistent=true
+      [Install]
+      WantedBy=timers.target
+
 - name: Enable a timer for borgmatic
   ansible.builtin.systemd:
     name: borgBacker.timer
@@ -51,5 +82,5 @@
     path: /etc/borgmatic
     owner: "{{ username }}"
     group: "{{ username }}"
-    mode: 0644
+    mode: 0755
     recurse: yes
