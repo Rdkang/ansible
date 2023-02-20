@@ -134,6 +134,7 @@ packages_homebrew:
 
 packages_cargo:
   - dust
+  - cargo-update
 
 packages_copr:
   - "mamg22/nsxiv"
