@@ -116,6 +116,8 @@ packages_desktop:
   - adw-gtk3
   - nsxiv
   - bibata-cursor-themes
+  - fuse-emulator
+  - mpv-mpris
 
 packages_gaming:
   - dbus-devel
