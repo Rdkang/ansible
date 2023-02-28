@@ -94,6 +94,7 @@ packages_cli:
   - xprop
   - zoxide
   - zsh
+  - neovim
 
 packages_desktop:
   - chromium
@@ -159,3 +160,4 @@ packages_flatpak:
   - dev.geopjr.Collision
   - fr.romainvigier.MetadataCleaner
   - net.hovancik.Stretchly
+  - com.github.iwalton3.jellyfin-mpv-shim
