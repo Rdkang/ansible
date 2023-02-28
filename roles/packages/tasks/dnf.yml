@@ -7,6 +7,12 @@
       defaultTrue=yes
       defaultyes=True
 
+- name: Enable the RPM Fusion repository
+  dnf:
+    name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
+    state: present
+  when: ansible_distribution == 'Fedora'
+
 - name: Add DNF repos
   dnf:
     enablerepo:
@@ -16,6 +22,11 @@
         "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm ",
         "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm",
       ]
+- name: dnf copr repo stuff
+  community.general.copr:
+    name: "{{ item }}"
+    state: "enabled"
+  loop: "{{ packages_copr }}"
 
 - name: Install dnf-automatic.
   dnf:
@@ -27,14 +38,6 @@
     name: dnf-automatic-install.timer
     state: started
     enabled: yes
-# TODO:
-#
-# - name: DNF copr repos
-#   tags: copr
-#   community.general.copr:
-#     name: "{{ packages_copr }}"
-#     state: "enabled"
-
 # - name: Install desktop packages
 #   dnf:
 #     name:
