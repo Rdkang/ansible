@@ -31,7 +31,7 @@
 
 
       ExecStartPre=sleep 1m
-      ExecStart=systemd-inhibit --who="borgmatic" --what="sleep:shutdown" --why="Prevent interrupting scheduled backup" /usr/bin/borgmatic --verbosity -1 --syslog-verbosity 1
+      ExecStart=systemd-inhibit --who="borgmatic" --what="sleep:shutdown" --why="Prevent interrupting scheduled backup" ping 192.168.0.7 -c 1 >/dev/null && /usr/bin/borgmatic --verbosity -1 --syslog-verbosity 1 || echo "server unavailable"
 
 - name: borgmatic timer file for server
   when: "'servers' in group_names"
