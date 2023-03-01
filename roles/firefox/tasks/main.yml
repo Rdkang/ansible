@@ -1,0 +1,15 @@
+- name: clones ffmpv
+  become: false
+  become_user: "{{ username }}"
+  git:
+    repo: https://github.com/woodruffw/ff2mpv.git
+    dest: /home/{{ username }}/Documents/ff2mpv
+    clone: yes
+    update: yes
+
+- name: runs ffmpv install.sh
+  become: false
+  become_user: "{{ username }}"
+  ansible.builtin.shell: "/home/{{ username }}/Documents/ff2mpv/install.sh firefox"
+  args:
+    creates: "/home/{{ username }}/.mozilla/native-messaging-hosts/ff2mpv.json"

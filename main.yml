@@ -5,8 +5,6 @@
   become: true
 
   roles:
-    - role: spotify
-      tags: spotify
     - role: monolithprojects.homebrew
     - role: packages
       tags: packages
@@ -16,5 +14,11 @@
       tags: backups
     - role: geerlingguy.pip
     - role: geerlingguy.docker
+    - role: spotify
+      tags: spotify
+      when: "'servers' not in group_names"
+    - role: firefox
+      tags: firefox
+      when: "'servers' not in group_names"
 
     # - role: ableton.rustup_init
