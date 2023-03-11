@@ -31,7 +31,7 @@
 
 
       ExecStartPre=sleep 1m
-      ExecStart=systemd-inhibit --who="borgmatic" --what="sleep:shutdown" --why="Prevent interrupting scheduled backup" ping 192.168.0.7 -c 1 >/dev/null && /usr/bin/borgmatic --verbosity -1 --syslog-verbosity 1 || echo "server unavailable"
+      ExecStart=systemd-inhibit --who="borgmatic" --what="sleep:shutdown" --why="Prevent interrupting scheduled backup" /home/{{ username }}/.local/bin/sss/borgBacker.sh
 
 - name: borgmatic timer file for server
   when: "'servers' in group_names"
@@ -70,6 +70,21 @@
       Persistent=true
       [Install]
       WantedBy=timers.target
+
+- name: borgmatic backup script
+  become_user: "{{ username }}"
+  copy:
+    dest: "/home/{{ username }}/.local/bin/sss/borgBacker.sh"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0755"
+    backup: yes
+    content: |
+      if ping {{ server_ip }} -c 1 >/dev/null; then
+          /usr/bin/borgmatic --list --stats --syslog-verbosity 0
+      else
+          echo "Server is unreachable :("
+      fi
 
 - name: Enable a timer for borgmatic
   ansible.builtin.systemd:
